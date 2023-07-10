@@ -1,4 +1,7 @@
 #include <stddef.h>
+#include "GetBlockCostHook.h"
+#include "OnMeleeHitHook.h"
+#include "PlayerUpdate.h"
 
 using namespace SKSE;
 using namespace SKSE::log;
@@ -37,12 +40,18 @@ namespace {
         spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%n] [%l] [%t] [%s:%#] %v");
     }
 
-    /**
-     * Initialize the hooks.
-     */
-    void InitializeHooks() {
-        log::trace("Initializing hooks...");
-        log::trace("Hooks initialized.");
+    void MessageHandler(SKSE::MessagingInterface::Message* a_msg) {
+        switch (a_msg->type) {
+            case SKSE::MessagingInterface::kPostLoad: {
+                // Only doing this here because it's important for the HitHook
+                // to hook after Shield of Stamina
+                log::trace("Initializing hooks...");
+                BlockCostHook::GetBlockCostHook::InstallHook();
+                HitHook::OnMeleeHit::InstallHook();
+                PlayerUpdate::OnPlayerUpdate::InstallHook();
+                log::trace("Hooks initialized.");
+            } break;
+        }
     }
 }  // namespace
 
@@ -57,7 +66,7 @@ SKSEPluginLoad(const LoadInterface* skse) {
     log::info("{} {} is loading...", plugin->GetName(), version);
 
     Init(skse);
-    InitializeHooks();
+    SKSE::GetMessagingInterface()->RegisterListener(MessageHandler);
 
     log::info("{} has finished loading.", plugin->GetName());
     return true;

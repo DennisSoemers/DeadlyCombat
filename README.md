@@ -4,8 +4,7 @@
 ![GitHub](https://img.shields.io/github/license/DennisSoemers/DeadlyCombat)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/DennisSoemers/DeadlyCombat)
 
-A reimplementation of [fenix31415's Parrying mod](https://www.nexusmods.com/skyrimspecialedition/mods/65133) for Skyrim, 
-with some additional features. 
+TODO
 
 ## Download
 

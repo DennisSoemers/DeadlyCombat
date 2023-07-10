@@ -26,6 +26,9 @@ configure_file(
         @ONLY)
 
 set(sources
+        src/GetBlockCostHook.cpp
+        src/OnMeleeHitHook.cpp
+        src/PlayerUpdate.cpp
         src/Main.cpp
 
         ${CMAKE_CURRENT_BINARY_DIR}/version.rc)
