@@ -25,8 +25,37 @@ void OnMeleeHit::ProcessHit(RE::Actor* victim, RE::HitData& hitData) {
             if (timeSpentBlocking > 0.f && timeSpentBlocking < 0.25f) {
                 auto aggressor = hitData.aggressor.get().get();
                 if (aggressor && aggressor->HasKeywordString("ActorTypeNPC")) {
-                    // Timed block against NPC
+                    // Timed block against NPC: no damage
                     hitData.totalDamage = 0.f;
+
+                    auto source = hitData.sourceRef.get().get();
+                    bool isMelee = true;
+
+                    if (source) {
+                        auto sourceWeapon = source->As<RE::TESObjectWEAP>();
+                        auto weaponType = sourceWeapon->GetWeaponType();
+                        isMelee = (weaponType != RE::WEAPON_TYPE::kBow && weaponType != RE::WEAPON_TYPE::kCrossbow);
+                    }
+
+                    if (isMelee) {
+                        if (hitData.flags.any(RE::HitData::Flag::kPowerAttack)) {
+                            // Power attack: attacker recoils
+                            SKSE::GetTaskInterface()->AddTask([aggressor]() { 
+                                aggressor->NotifyAnimationGraph("recoilLargeStart");
+                            });
+                            
+                        } else {
+                            // Not power attack: attacker staggers: thanks Valhalla code
+                            SKSE::GetTaskInterface()->AddTask(
+                                [aggressor, victim]() { 
+                                    auto headingAngle = aggressor->GetHeadingAngle(victim->GetPosition(), false);
+                                    auto direction = (headingAngle >= 0.0f) ? headingAngle / 360.0f : (360.0f + headingAngle) / 360.0f;
+                                    aggressor->SetGraphVariableFloat("staggerDirection", direction);
+                                    aggressor->SetGraphVariableFloat("StaggerMagnitude", 0.3f);
+                                    aggressor->NotifyAnimationGraph("staggerStart");
+                                });
+                        }
+                    }
                 }
             } else if (timeSpentBlocking > 1.f) {
                 float staminaCostTimeBlockingMult = timeSpentBlocking;
