@@ -15,6 +15,9 @@ namespace PlayerUpdate {
         /** Time player spent blocking. */
         float playerTimeSpentBlocking = 0.f;
 
+        /** Time player cooling down after blocking. */
+        float playerTimeSpentCoolingDown = 0.f;
+
     private:
         OnPlayerUpdate() = default;
         OnPlayerUpdate(const OnPlayerUpdate&) = delete;

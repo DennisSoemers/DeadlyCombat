@@ -16,10 +16,17 @@ void OnPlayerUpdate::InstallHook() {
 
 void OnPlayerUpdate::Update(RE::PlayerCharacter* player, float delta) {
     if (!RE::UI::GetSingleton()->GameIsPaused()) {
+        auto& Singleton = GetSingleton();
+
         if (player->IsBlocking()) {
-            GetSingleton().playerTimeSpentBlocking += delta;
-        } else {
-            GetSingleton().playerTimeSpentBlocking = 0.f;
+            Singleton.playerTimeSpentBlocking += delta;
+            Singleton.playerTimeSpentCoolingDown = 0.f;
+        } else if (Singleton.playerTimeSpentBlocking > 0.f) {
+            Singleton.playerTimeSpentCoolingDown += delta;
+            if (Singleton.playerTimeSpentCoolingDown >= 0.25f) {
+                // Finished cooling down
+                Singleton.playerTimeSpentBlocking = 0.f;
+            }
         }
     }
 
