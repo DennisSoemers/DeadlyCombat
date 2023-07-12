@@ -8,7 +8,7 @@ An SKSE plugin for the "Deadly Combat 2023 Edition" mod for The Elder Scrolls V:
 
 ## Download
 
-The plugin can be downloaded from [its NexusMods page TODO]().
+The plugin can be downloaded from [its NexusMods page](https://www.nexusmods.com/skyrimspecialedition/mods/95700).
 
 ## Runtime Requirements (for users)
 
