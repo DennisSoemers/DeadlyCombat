@@ -4,7 +4,7 @@
 ![GitHub](https://img.shields.io/github/license/DennisSoemers/DeadlyCombat)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/DennisSoemers/DeadlyCombat)
 
-TODO
+An SKSE plugin for the "Deadly Combat 2023 Edition" mod for The Elder Scrolls V: Skyrim Special Edition.
 
 ## Download
 
@@ -12,12 +12,12 @@ The plugin can be downloaded from [its NexusMods page TODO]().
 
 ## Runtime Requirements (for users)
 
-At runtime, the plugin has the following requirements. Any user of this plugin (or mods that in turn require this plugin) need to have this installed locally.
+At runtime, the plugin has the following requirements. Any user of this plugin (or any mod that in turn requires this plugin) needs to have this installed locally.
 
 - The Elder Scrolls V: Skyrim Special Edition.
   - Tested with version 1.5.97 (SSE).
-  - Assumed ompatible with versions 1.6.353 and above.
-  - Assumed compatible with Skyrim VR.
+  - Assumed compatible with versions 1.6.353 and above.
+  - Assumed incompatible with Skyrim VR.
 - [Skyrim Script Extender](https://skse.silverlock.org/)
 - [Address Library for SKSE Plugins](https://www.nexusmods.com/skyrimspecialedition/mods/32444)
 
@@ -38,6 +38,7 @@ Thanks to:
 - CharmedBaryon for [CommonLibSSE NG](https://github.com/CharmedBaryon/CommonLibSSE-NG) and the [CommonLibSSE NG Sample Plugin](https://gitlab.com/colorglass/commonlibsse-sample-plugin).
 - The SKSE authors for [SKSE](http://skse.silverlock.org/).
 - Meh321 for [Address Library for SKSE Plugins](https://www.nexusmods.com/skyrimspecialedition/mods/32444).
+- [NoahBoddie](https://github.com/NoahBoddie/) for pointing me to an address to use on 1.6.640
 
 ## Disclaimer
 
