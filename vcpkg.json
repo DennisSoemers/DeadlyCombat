@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
   "name": "parrying-rpg-plugin",
-  "version-string": "1.0.0",
+  "version-string": "1.0.1",
   "port-version": 0,
   "description": "Code for the 2023 edition of Deadly Combat.",
   "license": "Apache-2.0",

@@ -33,8 +33,12 @@ void OnMeleeHit::ProcessHit(RE::Actor* victim, RE::HitData& hitData) {
 
                     if (source) {
                         auto sourceWeapon = source->As<RE::TESObjectWEAP>();
-                        auto weaponType = sourceWeapon->GetWeaponType();
-                        isMelee = (weaponType != RE::WEAPON_TYPE::kBow && weaponType != RE::WEAPON_TYPE::kCrossbow);
+                        if (sourceWeapon == nullptr) {
+                            isMelee = false;
+                        } else {
+                            auto weaponType = sourceWeapon->GetWeaponType();
+                            isMelee = (weaponType != RE::WEAPON_TYPE::kBow && weaponType != RE::WEAPON_TYPE::kCrossbow);
+                        }
                     }
 
                     if (isMelee) {

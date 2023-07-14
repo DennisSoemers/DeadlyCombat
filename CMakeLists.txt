@@ -6,7 +6,7 @@ message("Using toolchain file ${CMAKE_TOOLCHAIN_FILE}.")
 ########################################################################################################################
 project(
         DeadlyCombat
-        VERSION 1.0.0
+        VERSION 1.0.1
         DESCRIPTION "Code for the 2023 edition of Deadly Combat."
         LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 23)
