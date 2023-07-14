@@ -70,7 +70,7 @@ void OnMeleeHit::ProcessHit(RE::Actor* victim, RE::HitData& hitData) {
                 }
 
                 const float extraStaminaCost = staminaCostTimeBlockingMult * staminaCostPerksMult * 15.f;
-                victim->AsActorValueOwner()->ModActorValue(RE::ActorValue::kStamina, -extraStaminaCost);
+                victim->AsActorValueOwner()->RestoreActorValue(RE::ACTOR_VALUE_MODIFIER::kDamage, RE::ActorValue::kStamina, -extraStaminaCost);
             }
         }
     }
